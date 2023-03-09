@@ -110,12 +110,58 @@ Dictionary<String, Int>
 */
 
 
+var namesOfInteger: [Int: String] = [:]
+namesOfInteger[16] = "dezesseis"
+namesOfInteger = [:]
+
+var namesOfDictionary: [String: String] = [
+    "YZA": "Joinville - SC",
+    "DUB": "Dublin"
+]
+
+print("Existem \(namesOfDictionary.count) itens dentro do dictionary ")
+
+if namesOfInteger.isEmpty {
+    print("Está vazio")
+} else {
+    print("n está vazio")
+}
+
+namesOfDictionary["NAME"] = "Marcel"
+print(namesOfDictionary.count)
 
 
+if let oldValue = namesOfDictionary.updateValue("matheus", forKey: "NAME") {
+    print("O nome foi alterado, nome anterior: \(oldValue)")
+}
+
+if let name = namesOfDictionary["NAME"] {
+    print("O nome do aeroporto é \(name)")
+} else {
+    print("esse nome é nulo")
+}
+
+//namesOfDictionary["NAME"] = nil
+
+if let removeValue = namesOfDictionary.removeValue(forKey: "NAME") {
+    print("nome removido é \(removeValue)")
+}
+
+for(dictionaryNameCode, dictionaryNameValue) in namesOfDictionary {
+    print("\(dictionaryNameCode) : \(dictionaryNameValue)")
+}
+
+for dictionaryNameCode in namesOfDictionary.keys {
+    print("Keys: \(dictionaryNameCode)")
+}
+
+for dictionaryNameValue in namesOfDictionary.values {
+    print("Values: \(dictionaryNameValue)")
+}
 
 
-
-
+let nameCodes = [String](namesOfDictionary.keys)
+let namesValues = [String](namesOfDictionary.values)
 
 
 
