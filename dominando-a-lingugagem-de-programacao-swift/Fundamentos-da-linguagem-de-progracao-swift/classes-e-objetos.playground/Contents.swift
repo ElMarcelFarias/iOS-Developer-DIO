@@ -74,3 +74,32 @@ var triangle = EquilateralTriangule(sideLength: 3.1, name: "um triangulo")
 print(triangle.perimeter)
 triangle.perimeter = 9.1
 
+
+class TriangleAndSquare {
+    var triangle: EquilateralTriangule {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    
+    var square: Square {
+        willSet {
+            triangle.sideLength = newValue.sideLength
+        }
+    }
+    
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangule(sideLength: size, name: name)
+    }
+}
+
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "Outra forma de teste")
+print(triangleAndSquare.square.sideLength)
+print(triangleAndSquare.triangle.sideLength)
+triangleAndSquare.square = Square(sideLength: 50, name: "quadrado maior")
+print(triangleAndSquare.triangle.sideLength)
+
+
+let optionalSquare: Square? = Square(sideLength: 2.5, name: "quadrado opcional")
+let sideLength = optionalSquare?.sideLength
