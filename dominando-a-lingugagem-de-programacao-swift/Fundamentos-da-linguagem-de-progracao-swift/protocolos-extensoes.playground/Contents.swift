@@ -89,3 +89,36 @@ var random = Dice(sides: 6, generetos: RandomNumber())
 for _ in 1...5 {
     print("O lançamento dos dados aleatórios são: \(random.roll())")
 }
+
+//delegate
+protocol DiceGame {
+    var dice: Dice { get}
+    func play()
+}
+
+/*
+protocol DiceGameDelegate: AnyObject {
+    func gameDidStart(_ game: DiceGame)
+    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll, diceRoll: Int)
+    func gameDidEnd(_ game: DiceGame)
+}
+ */
+
+
+class SomeType {
+    var number: Int = 7
+}
+
+extension SomeType {
+    //muda ou adiciona conteudo, novas funcionalidades
+}
+
+extension SomeType: ExempleProtocol {
+    var simplesDescription: String {
+        return "O número é \(number)"
+    }
+    
+    func adjust() {
+        number += 44
+    }
+}
