@@ -89,3 +89,22 @@ do {
 
 var vendingMachine = VendingMachine()
 vendingMachine.coinsDeposited = 8
+
+
+let printerSuccess = try? send(job: 1884, toPrinter: "Memorando")
+let printerFail    = try? send(job: 1885, toPrinter: "Não possui toner")
+
+//vendingMachine
+//var fridgeIsOpen = false
+//let fridgeContent = ["leite","ovo","sobras"]
+//func fridgeContains(_ food: String) -> Bool {
+//    fridgeIsOpen = true
+//    defer {
+//        fridgeIsOpen = false
+//    }
+//
+//    let result = fridgeContains.contains(food)
+//    return result
+//}
+//
+//fridgeContains("banan")
