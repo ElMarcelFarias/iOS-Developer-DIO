@@ -55,5 +55,5 @@ class Grade {
 
 var jandiraGrades = Grade(name: "Escola Jandira Davilla", grades: [10,10,10,10])
 var media = jandiraGrades.averengingSchool()
-print("Nome da Escola: \(jandiraGrades.name) \n\(media)")
+print("Nome da Escola: \(jandiraGrades.name) \nMedia da escola: \(media)")
 
