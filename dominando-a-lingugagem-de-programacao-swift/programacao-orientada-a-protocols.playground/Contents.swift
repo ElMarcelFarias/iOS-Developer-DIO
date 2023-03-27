@@ -114,4 +114,98 @@ print(Swallow.african)
 print(Swallow.unknow)
 
 
+class Motorcycle {
+    var name: String
+    var speed: Double
+    
+    init(name: String, speed: Double) {
+        self.name = name
+        self.speed = 200.0
+    }
+    
+    
+}
+
+protocol Racer {
+    var speed: Double { get }
+}
+
+extension Parrot: Racer {
+    var speed: Double {
+        maximumSpeed
+    }
+}
+
+extension Penguin: Racer {
+    var speed: Double {
+        42
+    }
+}
+
+
+extension Swallow: Racer {
+    var speed: Double {
+        canFly ? maximumSpeed : 0.0
+    }
+}
+
+extension Motorcycle: Racer {}
+
+let racers: [Racer] = [
+    Swallow.african,
+    Swallow.europe,
+    Swallow.unknow,
+    Penguin(name: "Pinguim"),
+    Parrot(name: "Papagaio", amplitude: 12.0, frequency: 5.0),
+    Motorcycle(name: "Marcel", speed: 20.0)
+]
+
+func topSpeed(of racers: [Racer]) -> Double {
+    racers.max (by: {$0.speed < $1.speed })?.speed ?? 0
+}
+
+print("Velocidade máxima dos pilotos \(topSpeed(of: racers))")
+
+
+extension Sequence where Iterator.Element == Racer {
+    
+    func topSpeed() -> Double {
+        self.max (by: {$0.speed < $1.speed })?.speed ?? 0
+    }
+    
+}
+print("Velocidade máxima dos pilotos \(racers.topSpeed())")
+print("Velociade máxima entre os 3 primeiros pilotos \(racers[1...3].topSpeed())")
+
+protocol Cheat {
+    mutating func boost(_ power: Double)
+}
+
+struct SwiftBird: Bird, Flyable {
+    var name: String { "Swift \(version)" }
+    let version: Double
+    private var speedFactor: Double = 1000.0
+    var maximumSpeed: Double {
+        version * speedFactor
+    }
+    
+    init(version: Double) {
+        self.version = version
+    }
+    
+}
+
+
+extension SwiftBird: Cheat {
+    mutating func boost(_ power: Double) {
+        speedFactor += power
+    }
+}
+
+var swiftBird = SwiftBird(version: 5.0)
+print("Velocidade = \(swiftBird.maximumSpeed)")
+swiftBird.boost(3.0)
+print("Velocidade = \(swiftBird.maximumSpeed)")
+swiftBird.boost(3.0)
+print("Velocidade = \(swiftBird.maximumSpeed)")
 
