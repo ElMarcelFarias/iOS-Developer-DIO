@@ -1,7 +1,7 @@
 import UIKit
 
 
-protocol Bird {
+protocol Bird: CustomStringConvertible {
     var name: String { get }
     var canFly: Bool { get }
 }
@@ -58,3 +58,60 @@ print("\(dove.name) voa? \(dove.canFly ? "Sim" : "Não"). Em qual velicidade má
 
 let ostrich = Ostrich(name: "Avestruz")
 print("\(ostrich.name) voa? \(ostrich.canFly ? "Sim" : "Não").")
+
+enum Swallow: Bird, Flyable {
+    case african
+    case europe
+    case unknow
+    
+    var name: String {
+        switch self {
+        case . african:
+            return "Andorinha Africana"
+        case .europe:
+            return "Andorinha Europeia"
+        case .unknow:
+            return "Andorinha"
+        }
+    }
+    
+    var maximumSpeed: Double {
+        
+        switch self {
+        case .african:
+            return 10.0
+        case .europe:
+            return 9.9
+        case .unknow:
+            fatalError("Não sabemos a velocidade que a Andorinha voa!")
+        }
+        
+    }
+    
+}
+
+
+extension Swallow {
+    var canFly: Bool {
+        self !=  .unknow
+    }
+}
+
+
+Swallow.unknow.canFly
+Swallow.african.canFly
+
+// COMPORTAMENTO PADRÃO
+
+extension CustomStringConvertible where Self: Bird {
+    var description: String {
+        canFly ? "Pode voar" : "Não pode voar"
+    }
+}
+
+
+print(Swallow.african)
+print(Swallow.unknow)
+
+
+
