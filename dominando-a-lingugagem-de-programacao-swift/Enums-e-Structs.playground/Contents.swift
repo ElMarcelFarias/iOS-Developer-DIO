@@ -28,7 +28,7 @@ enum Rank: Int {
 let ace = Rank.ace
 //rawValue valor bruto - padrao
 let aceRawValue = ace.rawValue
-let jogerRawValue = Rank.jack.rawValue]
+let jogerRawValue = Rank.jack.rawValue
 
 if let convertedRank = Rank(rawValue: 1) {
     let threeDescription = convertedRank.simplesDescription()
