@@ -2,20 +2,28 @@ import UIKit
 
 //  Neste desafio, você deverá desenvolver dois projetos no playground usando o Xcode. Em ambos você deverá implementar o Paradigma de Programação Orientada a Objetos e explorar conceitos de Controle de Fluxos, Coleções, Funções, Closures, Enuns, Structs e Concorrência.
 
-class School {
+protocol SchoolProtocols {
+    var nameSchool: String { get }
+    var schoolAdress: String { get }
+    var qtdStudent: Int { get }
+    func finalResultSituation(_ grades: [Float]) -> Float
+    func description()
+}
+
+class School: SchoolProtocols {
     
-    fileprivate var nameSchool: String
-    fileprivate var schoolAdress: String
-    fileprivate var privateSchool: Bool
-    fileprivate var result: Float = 0.00
-    fileprivate var qtdStudent: Int
+    var nameSchool: String
+    var schoolAdress: String
+    var privateSchool: Bool
+    var result: Float = 0.00
+    var qtdStudent: Int
     
     
     func description() {
         print("Nome: \(nameSchool) \nQuantidade de alunos: \(qtdStudent) \nEndereço: \(schoolAdress)")
     }
     
-    private func finalResultSituation(_ grades: [Float]) -> Float {
+    func finalResultSituation(_ grades: [Float]) -> Float {
         
         grades.forEach { grades in
             result += grades
