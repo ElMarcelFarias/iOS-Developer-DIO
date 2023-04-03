@@ -8,6 +8,7 @@
 import UIKit
 import Charts
 import Alamofire
+import TinyConstraints
 
 class ViewController: UIViewController {
 
@@ -27,15 +28,14 @@ class ViewController: UIViewController {
         
         print("viewDidLoad")
         
-        addAnchorConstraint()
+        addConstraints()
         createChart()
     }
     
-    private func addAnchorConstraint() {
-        chartView.translatesAutoresizingMaskIntoConstraints = false
-        chartView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        chartView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        chartView.heightAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+    private func addConstraints() {
+        chartView.centerInSuperview()
+        chartView.width(to: view)
+        chartView.heightToWidth(of: view)
     }
     
     private func createChart() {
