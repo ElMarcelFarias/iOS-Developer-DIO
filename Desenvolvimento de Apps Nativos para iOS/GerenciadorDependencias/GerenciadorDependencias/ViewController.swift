@@ -7,6 +7,7 @@
 
 import UIKit
 import Charts
+import Alamofire
 
 class ViewController: UIViewController {
 
@@ -39,37 +40,30 @@ class ViewController: UIViewController {
     
     private func createChart() {
         
-        let yValues = [
-            ChartDataEntry(x: 0.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 1.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 2.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 3.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 4.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 5.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 6.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 7.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 8.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 9.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 10.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 11.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 12.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 13.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 14.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 15.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 16.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 17.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 18.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 19.0, y: Double.random(in: 1...10)),
-            ChartDataEntry(x: 20.0, y: Double.random(in: 1...10))
-        ]
+        guard let url = Bundle.main.url(forResource: "chartDataEntry", withExtension: "json") else {
+            return }
         
-        let set1 = LineChartDataSet(entries: yValues, label: "")
-        set1.mode = .cubicBezier
-        set1.drawCirclesEnabled = false
+        AF.request(url).response { response in
+            guard let data = response.data else { return }
+            do {
+                let model = try JSONDecoder().decode([DataEntryModel].self, from: data)
+                
+                let yValues = model.map { ChartDataEntry(x: $0.x, y: $0.y) }
+                
+                let set1 = LineChartDataSet(entries: yValues, label: "")
+                set1.mode = .cubicBezier
+                set1.drawCirclesEnabled = false
+                
+                let data = LineChartData(dataSet: set1)
+                data.setDrawValues(false)
+                self.chartView.data = data
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
         
-        let data = LineChartData(dataSet: set1)
-        data.setDrawValues(false)
-        self.chartView.data = data
+        
     }
 
 
