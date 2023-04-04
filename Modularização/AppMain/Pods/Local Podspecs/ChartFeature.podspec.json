@@ -1,0 +1,39 @@
+{
+  "name": "ChartFeature",
+  "version": "0.1.0",
+  "summary": "A short description of ChartFeature.",
+  "description": "Feature para criação de gráficos",
+  "homepage": "https://github.com/ElMarcelFarias/iOS-Developer-DIO",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ElMarcelFarias": "marcel.leitefarias@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/ElMarcelFarias/iOS-Developer-DIO.git",
+    "tag": "0.1.0"
+  },
+  "swift_versions": "5.0",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source_files": "ChartFeature/Classes/**/*",
+  "default_subspecs": "Release",
+  "dependencies": {
+    "Charts": [
+
+    ],
+    "TinyConstraints": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Release",
+      "vendored_frameworks": "Framework/ChartFeature.framework"
+    }
+  ],
+  "swift_version": "5.0"
+}
