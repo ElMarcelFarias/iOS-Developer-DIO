@@ -11,7 +11,7 @@ protocol GenericStoreProtocol {
     var error: Error { get set }
     typealias completion<T> = (_ result: T, _ failure: Error?) -> Void
 }
-
+ 
 class GenericStoreRequest: GenericStoreProtocol {
     var error = NSError(domain: "", code: 901, userInfo: [NSLocalizedDescriptionKey: "Error getting information"]) as Error
     
