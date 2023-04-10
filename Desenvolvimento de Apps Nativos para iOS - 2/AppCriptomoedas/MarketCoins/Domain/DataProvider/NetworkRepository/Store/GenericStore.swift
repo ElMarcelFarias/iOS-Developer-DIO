@@ -26,7 +26,7 @@ class GenericStoreRequest: GenericStoreProtocol {
                 return
             }
             
-            do {
+            do { 
                 let object = try JSONDecoder().decode(T.self, from: data)
                 completion(object, nil)
             } catch {
