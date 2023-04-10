@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		473149B229E493AD00A89A52 /* GlobalValuesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473149B129E493AD00A89A52 /* GlobalValuesDataProvider.swift */; };
 		4739F1A529E4410000DE48DC /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4739F1A429E4410000DE48DC /* GlobalStore.swift */; };
 		4739F1A729E4412000DE48DC /* CoinsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4739F1A629E4412000DE48DC /* CoinsStore.swift */; };
 		4739F1AA29E444A700DE48DC /* ListCoinsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4739F1A929E444A700DE48DC /* ListCoinsDataProvider.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		473149B129E493AD00A89A52 /* GlobalValuesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalValuesDataProvider.swift; sourceTree = "<group>"; };
 		4739F1A429E4410000DE48DC /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
 		4739F1A629E4412000DE48DC /* CoinsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsStore.swift; sourceTree = "<group>"; };
 		4739F1A929E444A700DE48DC /* ListCoinsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCoinsDataProvider.swift; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		473149B029E4938100A89A52 /* GlobalValuesDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				473149B129E493AD00A89A52 /* GlobalValuesDataProvider.swift */,
+			);
+			path = GlobalValuesDataProvider;
+			sourceTree = "<group>";
+		};
 		4739F1A829E443C800DE48DC /* CoinsDataProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 		4764351D29DDB687007BBB48 /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
+				473149B029E4938100A89A52 /* GlobalValuesDataProvider */,
 				4739F1A829E443C800DE48DC /* CoinsDataProvider */,
 				4764351E29DDB69F007BBB48 /* NetworkRepository */,
 				4764351F29DDB6DB007BBB48 /* GenericDataProvider.swift */,
@@ -253,6 +264,7 @@
 				4739F1AA29E444A700DE48DC /* ListCoinsDataProvider.swift in Sources */,
 				4764350029DDA887007BBB48 /* ViewController.swift in Sources */,
 				4764352629DDD493007BBB48 /* API.swift in Sources */,
+				473149B229E493AD00A89A52 /* GlobalValuesDataProvider.swift in Sources */,
 				476434FC29DDA887007BBB48 /* AppDelegate.swift in Sources */,
 				4764352A29DDFB32007BBB48 /* Extensions.swift in Sources */,
 				4764352C29DDFC07007BBB48 /* CoinsRouter.swift in Sources */,
