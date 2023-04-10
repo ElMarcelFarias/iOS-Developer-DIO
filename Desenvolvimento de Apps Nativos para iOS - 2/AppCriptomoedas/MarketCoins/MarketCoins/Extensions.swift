@@ -3,7 +3,7 @@
 //  MarketCoins
 //
 //  Created by Marcel Leite de Farias on 05/04/23.
-//
+//  APPEND PARA UTILIZAR AS URLS COLOCANDO OS PARAMETROS E QUERYS 
 
 import Foundation
 

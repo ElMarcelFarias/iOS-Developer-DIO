@@ -3,7 +3,7 @@
 //  MarketCoins
 //
 //  Created by Marcel Leite de Farias on 05/04/23.
-//
+//  BUSCA HTTP ASSINCRONA 
 
 import Foundation
 

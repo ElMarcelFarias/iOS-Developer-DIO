@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-import Foundation
-
 protocol CoinsStoreProtocol: GenericStoreProtocol {
     func fetchLisCoins(by vsCurrency: String,
                        with crytocurrency: [String]?,

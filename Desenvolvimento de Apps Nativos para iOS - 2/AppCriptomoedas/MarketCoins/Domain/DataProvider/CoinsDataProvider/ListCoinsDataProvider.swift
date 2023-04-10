@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol ListCoinDataProviderDelegate: GenericDataProviderDelegate {}
+protocol ListCoinsDataProviderDelegate: GenericDataProviderDelegate {}
 
-class ListCoinDataProvider: DataProviderManager<ListCoinDataProviderDelegate, [CoinModel]> {
+class ListCoinsDataProvider: DataProviderManager<ListCoinsDataProviderDelegate, [CoinModel]> {
     
     private let coinsStore: CoinsStoreProtocol?
     
@@ -23,18 +23,20 @@ class ListCoinDataProvider: DataProviderManager<ListCoinDataProviderDelegate, [C
                         total parPage: Int,
                         page: Int,
                         percentagePrice: String) {
+        
         coinsStore?.fetchLisCoins(by: vsCurrency,
                                   with: crytocurrency,
                                   orderBy: order,
                                   total: parPage,
                                   page: page,
                                   percentagePrice: percentagePrice,
-                                  completion: { result, error   in
+                                  completion: { result, error in
+            
             if let error = error {
                 self.delegate?.errorData(self.delegate, error: error)
             }
             
-            if let result = result {
+            if let result = result{
                 self.delegate?.success(model: result)
             }
         })
