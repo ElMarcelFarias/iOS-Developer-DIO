@@ -15,7 +15,7 @@ import UIKit
 
 protocol CoinsListPresentationLogic {
     func presentGlobalValues(response: CoinsList.FetchGlobalValues.Response)
-    func presentListCoins(response: CoinsList.FetchListCoins.Response)
+    func presentListCoins(response: [CoinsList.FetchListCoins.Response])
     func presentError(error: CryptocurrenciesError)
 }
 
@@ -51,7 +51,7 @@ class CoinsListPresenter: CoinsListPresentationLogic {
             globalValues: globalValues
         )
         
-        //viewController?.displayGlobalValues(viewModel: viewModel)
+        viewController?.displayGlobalValues(viewModel: viewModel)
     }
     
     func presentListCoins(response: [CoinsList.FetchListCoins.Response]) {
@@ -74,6 +74,12 @@ class CoinsListPresenter: CoinsListPresentationLogic {
                 marketCapitalization: response.marketCap.toCurrency(from: response.baseCoin)
             )
         }
+        
+        let viewModel = CoinsList.FetchListCoins.ViewModel (
+            coins: coins
+        )
+        
+        viewController?.displayListCoins(viewModel: viewModel)
     }
     
     func presentError(error: CryptocurrenciesError) {
