@@ -35,3 +35,10 @@ extension URL {
         return url.appendingPathComponent(path)
     }
 }
+
+
+extension Error {
+    var errorCode: Int? {
+        return (self as NSError).code
+    }
+}
