@@ -10,22 +10,73 @@
 //  see http://clean-swift.com
 //
 
+
 import UIKit
 
-protocol CoinsListPresentationLogic
-{
-  func presentSomething(response: CoinsList.Something.Response)
+protocol CoinsListPresentationLogic {
+    func presentGlobalValues(response: CoinsList.FetchGlobalValues.Response)
+    func presentListCoins(response: CoinsList.FetchListCoins.Response)
+    func presentError(error: CryptocurrenciesError)
 }
 
-class CoinsListPresenter: CoinsListPresentationLogic
-{
-  weak var viewController: CoinsListDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: CoinsList.Something.Response)
-  {
-    let viewModel = CoinsList.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+class CoinsListPresenter: CoinsListPresentationLogic {
+    weak var viewController: CoinsListDisplayLogic?
+    
+    func presentGlobalValues(response: CoinsList.FetchGlobalValues.Response) {
+        var globalValues: [CoinsList.FetchGlobalValues.ViewModel.GlobalValues] = []
+        
+        
+        
+        for (_, value) in response.totalMarketCap {
+            
+            globalValues.append(
+                CoinsList.FetchGlobalValues.ViewModel.GlobalValues(
+                    title: "Capitalização de Mercado Global",
+                    value: value.toCurrency()
+                )
+            )
+        }
+        
+        for (_, value) in response.totalVolume {
+            globalValues.append(
+                CoinsList.FetchGlobalValues.ViewModel.GlobalValues(
+                    title: "Volume em 24hs",
+                    value: value.toCurrency()
+                )
+            )
+        }
+                
+        
+        let viewModel = CoinsList.FetchGlobalValues.ViewModel(
+            globalValues: globalValues
+        )
+        
+        //viewController?.displayGlobalValues(viewModel: viewModel)
+    }
+    
+    func presentListCoins(response: [CoinsList.FetchListCoins.Response]) {
+        let coins = response.map { response in
+            var rank = "-"
+            
+            if let marketCapRank = response.marketCapRank {
+                rank = "\(marketCapRank)"
+            }
+            
+            
+            return CoinsList.FetchListCoins.ViewModel.Coin(
+                id: response.id,
+                name: response.name,
+                rank: rank,
+                iconUrl: response.image,
+                symbol: response.symbol.uppercased(),
+                price: response.currentPrice.toCurrency(from: response.baseCoin),
+                priceChangePercentage: attributedString,
+                marketCapitalization: response.marketCap.toCurrency(from: response.baseCoin)
+            )
+        }
+    }
+    
+    func presentError(error: CryptocurrenciesError) {
+        
+    }
 }
