@@ -43,6 +43,7 @@ class CoinsListInteractor: CoinsListBusinessLogic, CoinsListDataStore {
             case .success(let globalModel):
                 self.createGlobalValuesResponse(baseCoin: request.baseCoin, global: globalModel)
             case .failure(let error):
+                self.presenter?.presentError(error: error)
             }
         })
     }
@@ -63,6 +64,7 @@ class CoinsListInteractor: CoinsListBusinessLogic, CoinsListDataStore {
                 case .success(let listCoinsModel):
                     self.createListCoinsResponse(request: request, listCoins: listCoinsModel)
                 case .failure(let error):
+                    self.presenter?.presentError(error: error)
                 }
             })
     }
@@ -77,8 +79,10 @@ class CoinsListInteractor: CoinsListBusinessLogic, CoinsListDataStore {
                 totalMarketCap: totalMarketCap,
                 totalVolume: totalVolume
             )
-        } else {
             
+            presenter?.presentGlobalValues(response: response)
+        } else {
+            self.presenter?.presentError(error: .undefinedError)
         }
     }
     
@@ -111,8 +115,9 @@ class CoinsListInteractor: CoinsListBusinessLogic, CoinsListDataStore {
                                                                 coin: coin)
                                                                 )
             }
+            presenter?.presentListCoins(response: response)
         } else {
-            
+            self.presenter?.presentError(error: .undefinedError)
         }
     }
   

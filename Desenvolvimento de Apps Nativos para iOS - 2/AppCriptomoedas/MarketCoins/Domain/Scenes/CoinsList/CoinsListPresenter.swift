@@ -45,7 +45,7 @@ class CoinsListPresenter: CoinsListPresentationLogic {
         )
         
         
-        
+        viewController?.displayGlobalValues(viewModel: viewModel)
         
     }
     
@@ -58,11 +58,29 @@ class CoinsListPresenter: CoinsListPresentationLogic {
                     rank = "\(marketCapRank)"
             }
             
-            return CoinsList.FetchListCoins.ViewModel.Coin(id: <#T##String#>, name: <#T##String#>, rank: <#T##String#>, iconUrl: <#T##String#>, symbol: <#T##String#>, price: <#T##String#>, priceChangePercentage: <#T##String#>, marketCapitalization: <#T##String#>)
+            return CoinsList.FetchListCoins.ViewModel.Coin(
+                id: response.id,
+                name: response.name,
+                rank: rank,
+                iconUrl: response.image,
+                symbol: response.symbol,
+                price: response.currentPrice.toCurrency(),
+                priceChangePercentage: response.priceChangePercentage.toPercentage(),
+                marketCapitalization: response.marketCap.toCurrency()
+            )
         }
+        
+        let viewModel = CoinsList.FetchListCoins.ViewModel(
+            coins: coins
+        )
+        
+        viewController?.displayListCoins(viewModel: viewModel)
     }
     
-    func presentError(error: CryptocurrenciesError) {}
+    
+    func presentError(error: CryptocurrenciesError) {
+        viewController?.displayError(error: error.errorDescription)
+    }
     
     
     
