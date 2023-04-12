@@ -13,20 +13,19 @@
 import UIKit
 
 class GlobalValuesWorker {
-    
+
     private let dataProvider: GlobalValuesDataProvider?
-    private var completion: ((Result<GlobalModel?, CryptocurrenciesError>) -> Void)?
+    private var completion: ((Result<GlobalModel?,CryptocurrenciesError>) -> Void)?
     
     init(dataProvider: GlobalValuesDataProvider = GlobalValuesDataProvider()) {
         self.dataProvider = dataProvider
         self.dataProvider?.delegate = self
     }
     
-    func doFetchGlobalValues(completion: @escaping ((Result<GlobalModel?, CryptocurrenciesError>) -> Void)) {
+    func doFetchGlobalValues(completion: @escaping ((Result<GlobalModel?,CryptocurrenciesError>) -> Void)) {
         dataProvider?.fetchGlobalValues()
         self.completion = completion
     }
-    
 }
 
 extension GlobalValuesWorker: GlobalValuesDataProviderDelegate {
@@ -35,6 +34,7 @@ extension GlobalValuesWorker: GlobalValuesDataProviderDelegate {
             fatalError("Completion not implemented!")
         }
         completion(.success(model as? GlobalModel))
+        
     }
     
     func errorData(_ provider: GenericDataProviderDelegate?, error: Error) {
@@ -51,8 +51,6 @@ extension GlobalValuesWorker: GlobalValuesDataProviderDelegate {
         } else {
             completion(.failure(.undefinedError))
         }
-        
-        
     }
     
     

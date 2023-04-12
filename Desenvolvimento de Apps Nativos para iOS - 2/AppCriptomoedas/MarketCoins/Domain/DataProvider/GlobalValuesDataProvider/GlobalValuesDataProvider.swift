@@ -17,7 +17,7 @@ class GlobalValuesDataProvider: DataProviderManager<GlobalValuesDataProviderDele
         self.globalStore = globalStore
     }
     
-    func fetchGlobalValues() {
+    func fetchGlobalValues() { 
         globalStore?.fetchGlobal(completion: { result, error in
             if let error = error {
                 self.delegate?.errorData(self.delegate, error: error)
